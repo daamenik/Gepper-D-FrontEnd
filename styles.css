@@ -107,6 +107,10 @@ body {
   color: #fefefe;
 }
 
+.end-of-game {
+  visibility: hidden;
+}
+
 .final-jeopardy {
   visibility: hidden;
   text-align: center;

@@ -43,6 +43,12 @@
         <button onclick="showFinalQuestion()">See Question</button>
     </div>
 
+    <div class="end-of-game" id="endGame">
+        <p>Game over! Your final score was</p>
+        <p id="finalScore"></p>
+        <a href="index.html">Play again</a>
+    </div>
+
     <div class="invisible-div" id="showNumberDiv">
         <?php echo $showNumber ?>
     </div>

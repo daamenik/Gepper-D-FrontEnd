@@ -23,6 +23,9 @@ function showFinalQuestion() {
         alert("Your wager cannot be higher than your score.");
     } else {
         showQuestion(id);
+        document.getElementById("finalJeopardy").style.visibility = "hidden";
+        document.getElementById("endGame").style.visibility = "visible";
+        document.getElementById("finalScore").value = playerMoney;
     }
 }
 
@@ -80,6 +83,7 @@ function initializeClueBoard(roundType) {
         getCategories(roundType, doubleJeopardyAmounts);
         buildClues(doubleJeopardyAmounts);
     } else {
+        getCategories(roundType, jeopardyAmounts);
         document.getElementById("finalJeopardy").style.visibility = "visible";
     }
 }
