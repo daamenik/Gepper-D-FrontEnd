@@ -14,7 +14,7 @@
     <title>Playing Game</title>
 </head>
 
-<div class="title-header">GEPPER-D!</div>
+<div class="title-header"><h1>GEPPER-D!</h1></div>
 
 <body onload="showBoard()">
   <audio id="music" src="theme.mp3" loop="loop"></audio>
