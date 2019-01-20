@@ -66,7 +66,7 @@ function getPHPRounds(showNumber) {
 function showBoard() {
     if (showNumber !== 0) {
         getPHPRounds(showNumber);
-        score.innerHTML = "$" + playerMoney;
+        score.innerHTML = "Score: $" + playerMoney;
     }
 }
 
@@ -242,7 +242,7 @@ function showQuestion(id) {
       answerShown = false;
 
       //disable this clue
-      score.innerHTML = "$" + playerMoney;
+      score.innerHTML = "Score: $" + playerMoney;
       var currentClue = document.getElementById(id);
       currentClue.style.color = "blue";
       currentClue.onclick = function(){};
@@ -267,7 +267,7 @@ function showQuestion(id) {
       correctnessDiv.style.visibility = "hidden";
       qModal.style.display = "none";
       answerShown = false;
-      score.innerHTML = "$" + playerMoney;
+      score.innerHTML = "Score: $" + playerMoney;
 
       //disable this clue
       var currentClue = document.getElementById(id);
