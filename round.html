@@ -9,7 +9,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <title>Playing Game</title>
 </head>
+
 <body onload="showBoard()">
+  <audio id="music" src="theme.mp3" loop="loop"></audio>
+  <h1 class="score-header" id="score"></h1>
+
+
 	<div class="container">
         <div class="row" id="categories"></div>
 
@@ -23,5 +28,19 @@
     </div>
 
     <script src="js/app.js"></script>
+
+  <div id="qModal" class="modal">
+
+    <div class="modal-content">
+      <p id="question"></p>
+      <button id = "show" type="button" class="btn btn-default">Show Answer</button>
+      <div class="correctness-selector" id="correctness">
+        <p>Did you get the question correct?</p>
+        <button id = "yesCorrect" type="button" class="btn btn-default">Yes</button>
+        <button id = "noCorrect" type="button" class="btn btn-default">No</button>
+      </div>
+    </div>
+</div>
+
 </body>
 </html>
