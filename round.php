@@ -47,6 +47,7 @@
     <div class="modal-content">
       <p id="question"></p>
       <button id = "show" type="button" class="btn btn-default">Show Answer</button>
+  <center>
       <div class="correctness-selector" id="correctness">
         <p>Did you get the question correct?</p>
         <button id = "yesCorrect" type="button" class="btn btn-default">Yes</button>
@@ -54,6 +55,7 @@
         <button id = "pass" type="button" class="btn btn-default">Pass</button>
       </div>
     </div>
+  </center>
 </div>
 <script>
     var showNumber = "<?php echo $showNumber ?>";
