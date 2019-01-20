@@ -123,7 +123,7 @@ function buildClues() {
         categoryNumber++;
     };
     document.getElementById(dollarAmounts[rowNum]).innerHTML = gridRow;
-    
+
 }
 
 
@@ -148,8 +148,8 @@ function showQuestion(id) {
     //format question and answer strings
     var qString = "";
     var aString = "";
-    qString = "<p>" + question + "</p>";
-    aString = "<p>Answer: " + answer + "</p>";
+    qString = "<h2>" + question + "</h2>";
+    aString = "<h1>Answer: " + answer + "</h1>";
 
     //access and show modal
     var qModal = document.getElementById('qModal');
@@ -180,13 +180,12 @@ function showQuestion(id) {
         correctnessDiv.style.visibility = "visible";
       }
       else{
-        qModal.style.display = "none";
         answerShown = false;
-
+      }
         //reset the music
         themeMusic.pause();
         themeMusic.currentTime = 0.0;
-      }
+
     }
 
     //if they select correct, add money
@@ -249,12 +248,12 @@ function showQuestion(id) {
         correctnessDiv.style.visibility = "hidden";
         qModal.style.display = "none";
         answerShown = false;
-  
+
         //disable this clue
         var currentClue = document.getElementById(id);
         currentClue.innerHTML = "";
         currentClue.onclick = function(){};
-  
+
         //reset the music
         themeMusic.pause();
         themeMusic.currentTime = 0.0;
