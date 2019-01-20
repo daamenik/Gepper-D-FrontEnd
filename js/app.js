@@ -112,7 +112,7 @@ function buildClues() {
         categoryNumber++;
     };
     document.getElementById(dollarAmounts[rowNum]).innerHTML = gridRow;
-    
+
 }
 
 
@@ -166,13 +166,12 @@ function showQuestion(id) {
         correctnessDiv.style.visibility = "visible";
       }
       else{
-        qModal.style.display = "none";
         answerShown = false;
-
+      }
         //reset the music
         themeMusic.pause();
         themeMusic.currentTime = 0.0;
-      }
+
     }
 
     //if they select correct, add money
@@ -235,12 +234,12 @@ function showQuestion(id) {
         correctnessDiv.style.visibility = "hidden";
         qModal.style.display = "none";
         answerShown = false;
-  
+
         //disable this clue
         var currentClue = document.getElementById(id);
         currentClue.innerHTML = "";
         currentClue.onclick = function(){};
-  
+
         //reset the music
         themeMusic.pause();
         themeMusic.currentTime = 0.0;
