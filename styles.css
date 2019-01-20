@@ -1,0 +1,27 @@
+body {
+    background-color: black;
+}
+
+.category {
+    background-color: blue;
+    border-style: solid;
+    border-color: black;
+    color: white;
+    font-style: bold;
+    padding: 5px 0px;
+    text-align: center;
+}
+
+.clue-box {
+    background-color: blue;
+    border-style: solid;
+    border-color: black;
+    color: yellow;
+    font-size: 35px;
+    font-style: bold;
+    text-align: center;
+}
+
+.container {
+    padding-top: 25px;
+}
