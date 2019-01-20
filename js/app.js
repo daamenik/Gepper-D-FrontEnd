@@ -55,7 +55,6 @@ var text = "";
         id = clue.ClueID;
 
         if (categories[categoryNumber] === category) {
-            gridRow += "<div class=\"col clue-box\" id=\"" + id + "\">" + dollarValue + "</div>";
         } else {
             gridRow += "<div class=\"col clue-box\">Nope</div>";
             i--;
@@ -66,6 +65,12 @@ var text = "";
     document.getElementById(dollarAmounts[rowNum]).innerHTML = gridRow;
 })("J");
 
+<<<<<<< HEAD
+=======
+function showQuestion(id) {
+    alert("Hey " + id);
+}
+>>>>>>> a32067a42e1aff9c7713c5bdc150c04e830be697
 
 // dollarAmounts.forEach(element => {
 //     text = "";
