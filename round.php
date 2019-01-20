@@ -33,7 +33,8 @@
     </div>
 
     <div class="daily-double" id="dailyDouble">
-        You've found a Daily Double! Enter your wager: $<input type="text" id="ddEntry"><br>
+        You've found a Daily Double! 
+        <p>Enter your wager: $<input type="text" id="ddEntry"></p><br>
         <button onclick="showDailyDouble()">See Question</button>
     </div>
 
