@@ -42,6 +42,7 @@ body {
 }
 
 .category {
+    font-family: 'arroyoregular';
     background-color: blue;
     border-style: solid;
     border-color: black;
@@ -53,6 +54,7 @@ body {
 }
 
 .clue-box {
+    font-family: 'arroyoregular';
     background-color: blue;
     border-style: solid;
     border-color: black;
