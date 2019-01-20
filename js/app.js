@@ -4,7 +4,12 @@ var roundClues = [];
 var dollarAmounts = ["$200", "$400", "$600", "$800", "$1000"];
 var text = "";
 
-(function getCategories(roundType) {
+function showBoard() {
+    getCategories("J");
+    buildClues("J");
+}
+
+function getCategories(roundType) {
     categories = [];
     if (roundType === "J") {
         for (var i = 0; i < 6; i++) {
@@ -22,9 +27,10 @@ var text = "";
         categoryRowCode += "<div class=\"col category\">" + categories[i] + "</div>";
     }
     document.getElementById("categories").innerHTML = categoryRowCode;
-})("J");
+}
 
-(function buildClues(roundType) {
+function buildClues(roundType) {
+
     if (roundType === "J") {
         roundClues = rounds[0].roundClues;
     } else if (roundType === "D") {
@@ -62,7 +68,7 @@ var text = "";
         categoryNumber++;
     };
     document.getElementById(dollarAmounts[rowNum]).innerHTML = gridRow;
-})("J");
+}
 
 
 function showQuestion(id) {
@@ -78,10 +84,7 @@ function showQuestion(id) {
       }
     }
 
-    
 }
-
-
 // dollarAmounts.forEach(element => {
 //     text = "";
 //     dollarRow(element);
