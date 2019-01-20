@@ -3,7 +3,12 @@ var categories = [];
 var dollarAmounts = ["$200", "$400", "$600", "$800", "$1000"];
 var text = "";
 
-(function getCategories(roundType) {
+function showBoard() {
+    getCategories("J");
+    buildClues("J");
+}
+
+function getCategories(roundType) {
     categories = [];
     if (roundType === "J") {
         for (var i = 0; i < 6; i++) {
@@ -21,9 +26,9 @@ var text = "";
         categoryRowCode += "<div class=\"col category\">" + categories[i] + "</div>";
     }
     document.getElementById("categories").innerHTML = categoryRowCode;
-})("J");
+}
 
-(function buildClues(roundType) {
+function buildClues(roundType) {
     var roundClues = [];
     if (roundType === "J") {
         roundClues = rounds[0].roundClues;
@@ -55,6 +60,7 @@ var text = "";
         id = clue.ClueID;
 
         if (categories[categoryNumber] === category) {
+            gridRow += "<div class=\"col clue-box\" id=\"" + id + "\" onclick=\"return showQuestion(this.id)\">" + dollarValue + "</div>";
         } else {
             gridRow += "<div class=\"col clue-box\">Nope</div>";
             i--;
@@ -63,7 +69,7 @@ var text = "";
         categoryNumber++;
     };
     document.getElementById(dollarAmounts[rowNum]).innerHTML = gridRow;
-})("J");
+}
 
 function showQuestion(id) {
     alert("Hey " + id);
