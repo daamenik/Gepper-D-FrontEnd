@@ -11,6 +11,17 @@ var playerMoney = 0;
 var questionMoney = 0;
 var score = document.getElementById("score");
 var showNumber = Number(document.getElementById("showNumberDiv").innerHTML);
+var wager = 0;
+
+function showFinalQuestion() {
+    var id = roundClues[0].clue_id;
+    wager = Number(document.getElementById("wagerEntry").value);
+    if (wager > playerMoney) {
+        alert("Your wager cannot be higher than your score.");
+    } else {
+        showQuestion(id);
+    }
+}
 
 function getPHPRounds(showNumber) {
     var xmlhttp = new XMLHttpRequest();
@@ -129,7 +140,7 @@ function showQuestion(id) {
       if(roundClues[i].clue_id == id ){
         question = roundClues[i].question;
         answer = roundClues[i].answer;
-        questionMoney = parseInt(roundClues[i].value.substring(1,));
+        questionMoney = roundCode === "F" ? wager : parseInt(roundClues[i].value.substring(1,));
         // console.log(question);
       }
     }
@@ -157,6 +168,9 @@ function showQuestion(id) {
     var yesCorrectBtn = document.getElementById('yesCorrect');
     var noCorrectBtn = document.getElementById('noCorrect');
     var passBtn = document.getElementById('pass');
+    if (roundCode === "F") {
+        passBtn.style.visibility = "hidden";
+    }
 
     //if we click show answer once, it shows, twice, disappears
     show.onclick = function(event) {
