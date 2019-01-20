@@ -4,6 +4,7 @@ var phpRounds = [];
 var roundClues = [];
 var roundCode = "J";
 var numClues = 0;
+var classicAmounts = ["$100", "$200", "$300", "$400", "$500"];
 var jeopardyAmounts = ["$200", "$400", "$600", "$800", "$1000"];
 var doubleJeopardyAmounts = ["$400", "$800", "$1200", "$1600", "$2000"];
 var dailyDoubleIDs = [];
@@ -85,11 +86,13 @@ function initializeClueBoard(roundType) {
     roundCode = roundType;
 
     if (roundType === "J") {
-        getCategories(roundType, jeopardyAmounts);
-        buildClues(jeopardyAmounts);
+        var dollarAmounts = phpRounds[0].air_date < "2001-11-26" ? classicAmounts : jeopardyAmounts;
+        getCategories(roundType, dollarAmounts);
+        buildClues(dollarAmounts);
     } else if (roundType === "D") {
-        getCategories(roundType, doubleJeopardyAmounts);
-        buildClues(doubleJeopardyAmounts);
+        var dollarAmounts = phpRounds[0].air_date < "2001-11-26" ? jeopardyAmounts : doubleJeopardyAmounts;
+        getCategories(roundType, dollarAmounts);
+        buildClues(dollarAmounts);
     } else {
         getCategories(roundType, jeopardyAmounts);
         document.getElementById("finalJeopardy").style.visibility = "visible";

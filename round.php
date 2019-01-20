@@ -56,8 +56,6 @@
         <?php echo $showNumber ?>
     </div>
 
-    <button onclick="initializeClueBoard('F')">Final Jeopardy</button>
-
   <div id="qModal" class="modal">
 
     <div class="modal-content">
