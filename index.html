@@ -9,9 +9,21 @@
     <link rel="shortcut icon" type="image/x-icon" href="https://i.kym-cdn.com/photos/images/original/001/318/758/bbe.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    <!-- datepicker stuff, from java docs -->
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $('.datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    startDate: '1984-09-10',
+    endDate: '';
+    });
+    </script>
+
 </head>
 
-<div class="title-header">GEPPER-D!</div>
+<div class="title-header"><h1>GEPPER-D!</h1></div>
 
 
 <body>
@@ -20,6 +32,7 @@
     <p>Simply enter the Episode # of your desired show to start playing!</p>
     <form method="post" action="round.php">
       Enter show number: <input type="text" id="showNumber" name='showNumber'>
+      Enter date(yyyy-mm-dd):<input type="text" id="datepicker" name='datepicker'>
       <input type="submit" name='submit' value='Play Game'>
       </form>
     <script src="js/app.js"></script>
