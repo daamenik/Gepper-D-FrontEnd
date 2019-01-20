@@ -2,38 +2,22 @@ var rounds = [ { "type": "J", "roundClues": [ { "Category": "HISTORY", "AirDate"
 var categories = [];
 var phpRounds = [];
 var roundClues = [];
+var roundCode = "J";
+var numClues = 0;
 var dollarAmounts = ["$200", "$400", "$600", "$800", "$1000"];
 var text = "";
 var themeMusic = document.getElementById("music");
 var playerMoney = 0;
 var questionMoney = 0;
 var score = document.getElementById("score");
-
-document.getElementById("showNumberForm").onsubmit(function () {
-    getPHPRounds(document.getElementById("showNumberText"));
-});
-
-// function getRounds(showNumber) {
-//     debugger;
-//     $.ajax({
-//         url:"server.php", //the page containing php script
-//         type: "post", //request type,
-//         dataType: 'json',
-//         data: {"callGetRounds" : showNumber},
-//         success:function(response) {
-//             phpRounds = response;
-//         }
-//      });
-// }
+var showNumber = Number(document.getElementById("showNumberDiv").innerHTML);
 
 function getPHPRounds(showNumber) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            debugger;
             phpRounds = JSON.parse(this.responseText);
-            getCategories("J");
-            buildClues();
+            initializeClueBoard(roundCode);
         }
     };
     xmlhttp.open("GET", "server.php?showNumber=" + showNumber, true);
@@ -41,8 +25,20 @@ function getPHPRounds(showNumber) {
 }
 
 function showBoard() {
-    // getPHPRounds(4680);
-    score.innerHTML = "$" + playerMoney;
+    if (showNumber !== 0) {
+        getPHPRounds(showNumber);
+        score.innerHTML = "$" + playerMoney;
+    }
+}
+
+function initializeClueBoard(roundType) {
+    roundCode = roundType;
+    getCategories(roundType);
+    if (roundType !== "F") {
+        buildClues();
+    } else {
+        document.getElementById("finalJeopardy").style.visibility = "visible";
+    }
 }
 
 function getCategories(roundType) {
@@ -57,23 +53,32 @@ function getCategories(roundType) {
         roundClues = _.where(phpRounds, {round: "Final Jeopardy!"});
     }
 
-    var valueCounts = _.countBy(roundClues, 'value');
-    for (var i = 0; i < dollarAmounts.length; i++) {
-        var amount = dollarAmounts[i]
-        if (valueCounts[amount] === 6) {
-            fullCategoryValue = amount;
-            break;
+    if (roundCode === "F") {
+        debugger;
+        document.getElementById("normalBoard").innerHTML = "";
+        document.getElementById("finalClue").innerHTML = roundClues[0].category;
+        numClues = 1;
+    } else {
+        numClues = roundClues.length;
+
+        var valueCounts = _.countBy(roundClues, 'value');
+        for (var i = 0; i < dollarAmounts.length; i++) {
+            var amount = dollarAmounts[i]
+            if (valueCounts[amount] === 6) {
+                fullCategoryValue = amount;
+                break;
+            }
         }
-    }
 
-    fullCategoryClues = _.where(roundClues, {value: fullCategoryValue});
-    categories = _.pluck(fullCategoryClues, 'category');
+        fullCategoryClues = _.where(roundClues, {value: fullCategoryValue});
+        categories = _.pluck(fullCategoryClues, 'category');
 
-    var categoryRowCode = "";
-    for (var i = 0; i < categories.length; i++) {
-        categoryRowCode += "<div class=\"col category\">" + categories[i] + "</div>";
+        var categoryRowCode = "";
+        for (var i = 0; i < categories.length; i++) {
+            categoryRowCode += "<div class=\"col category\">" + categories[i] + "</div>";
+        }
+        document.getElementById("categories").innerHTML = categoryRowCode;
     }
-    document.getElementById("categories").innerHTML = categoryRowCode;
 }
 
 function buildClues() {
@@ -107,6 +112,7 @@ function buildClues() {
         categoryNumber++;
     };
     document.getElementById(dollarAmounts[rowNum]).innerHTML = gridRow;
+    
 }
 
 
@@ -119,12 +125,12 @@ function showQuestion(id) {
 
     //find the right clue and store its q and a
     for (var i = 0; i < roundClues.length; i++) {
-      console.log(roundClues[i].ClueID);
-      if(roundClues[i].ClueID == id ){
-        question = roundClues[i].Question;
-        answer = roundClues[i].Answer;
-        questionMoney = parseInt(roundClues[i].Value.substring(1,));
-        console.log(question);
+    //   console.log(roundClues[i].clue_id);
+      if(roundClues[i].clue_id == id ){
+        question = roundClues[i].question;
+        answer = roundClues[i].answer;
+        questionMoney = parseInt(roundClues[i].value.substring(1,));
+        // console.log(question);
       }
     }
 
@@ -169,11 +175,8 @@ function showQuestion(id) {
       }
     }
 
-    console.log("playerMoney: " + playerMoney);
-    console.log("questionMoney: " + questionMoney);
-//if they select correct, add money
-//regardless, reset visibility of answer and modal
-
+    //if they select correct, add money
+    //regardless, reset visibility of answer and modal
     yesCorrectBtn.onclick = function(){
       playerMoney += questionMoney;
       correctnessDiv.style.visibility = "hidden";
@@ -183,8 +186,18 @@ function showQuestion(id) {
       //disable this clue
       score.innerHTML = "$" + playerMoney;
       var currentClue = document.getElementById(id);
-      currentClue.innerHTML = "";
+      currentClue.style.color = "blue";
       currentClue.onclick = function(){};
+      numClues--;
+        if (numClues === 0) {
+            if (roundCode === "J") {
+                roundCode = "D";
+            } else if (roundCode === "D") {
+                roundCode = "F";
+            }
+
+            initializeClueBoard(roundCode);
+        }
 
       //reset the music
       themeMusic.pause();
@@ -200,8 +213,18 @@ function showQuestion(id) {
 
       //disable this clue
       var currentClue = document.getElementById(id);
-      currentClue.innerHTML = "";
+      currentClue.style.color = "blue";
       currentClue.onclick = function(){};
+      numClues--;
+        if (numClues === 0) {
+            if (roundCode === "J") {
+                roundCode = "D";
+            } else if (roundCode === "D") {
+                roundCode = "F";
+            }
+
+            initializeClueBoard(roundCode);
+        }
 
       //reset the music
       themeMusic.pause();
@@ -209,18 +232,18 @@ function showQuestion(id) {
     }
 
     passBtn.onclick = function(){
-      correctnessDiv.style.visibility = "hidden";
-      qModal.style.display = "none";
-      answerShown = false;
-
-      //disable this clue
-      var currentClue = document.getElementById(id);
-      currentClue.innerHTML = "";
-      currentClue.onclick = function(){};
-
-      //reset the music
-      themeMusic.pause();
-      themeMusic.currentTime = 0.0;
+        correctnessDiv.style.visibility = "hidden";
+        qModal.style.display = "none";
+        answerShown = false;
+  
+        //disable this clue
+        var currentClue = document.getElementById(id);
+        currentClue.innerHTML = "";
+        currentClue.onclick = function(){};
+  
+        //reset the music
+        themeMusic.pause();
+        themeMusic.currentTime = 0.0;
     }
 
 }

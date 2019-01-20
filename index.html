@@ -65,13 +65,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 </head>
 <body>
-	<p>Welcome to Gepper-D, where you can play real Jeopardy games from days gone by!</p>
-	<p>Simply enter the ID of the show to start playing!</p>
-	<form id="showNumberForm" action="round.html">
-		Enter show number: <input type="text" id="showNumberText">
-		<input type="submit">
-	  </form>
-	<button id="enterButton">Enter</button>
-	<script src="js/app.js"></script>
+    <p>Welcome to Gepper-D, where you can play real Jeopardy games from days gone by!</p>
+    <p>Simply enter the ID of the show to start playing!</p>
+    <form method="post" action="round.php">
+      Enter show number: <input type="text" id="showNumber" name='showNumber'>
+      <input type="submit" name='submit' value='Play Game'>
+      </form>
+    <script src="js/app.js"></script>
 </body>
 </html>

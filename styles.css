@@ -66,6 +66,10 @@ body {
     padding-top: 25px;
 }
 
+.invisible-div {
+  visibility: hidden;
+}
+
 /* w3schools modal example */
 .modal {
   display: none; /* Hidden by default */
@@ -96,4 +100,10 @@ body {
 
 .score-header {
   color: #fefefe;
+}
+
+.final-jeopardy {
+  visibility: hidden;
+  text-align: center;
+  padding: 0px 5px;
 }
