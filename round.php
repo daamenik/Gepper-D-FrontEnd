@@ -14,7 +14,7 @@
     <title>Playing Game</title>
 </head>
 
-<div class="title-header"><h1>GEPPER-D!</h1></div>
+<div class="title-header">GEPPER-D!</div>
 
 <body onload="showBoard()">
   <audio id="music" src="theme.mp3" loop="loop"></audio>
@@ -33,8 +33,8 @@
     </div>
 
     <div class="daily-double" id="dailyDouble">
-        You've found a Daily Double! 
-        <p>Enter your wager: $<input type="text" id="ddEntry"></p><br>
+        <h3>You've found a Daily Double!</h3>
+        <h4>Enter your wager: $<input type="text" id="ddEntry"></h4><br>
         <button onclick="showDailyDouble()">See Question</button>
     </div>
 
@@ -45,9 +45,11 @@
     </div>
 
     <div class="end-of-game" id="endGame">
+      <center>
         <p>Game over! Your final score was</p>
         <p id="finalScore"></p>
-        <a href="index.html">Play again</a>
+        <a href="index.html">Play again?</a>
+      </center>
     </div>
 
     <div class="invisible-div" id="showNumberDiv">

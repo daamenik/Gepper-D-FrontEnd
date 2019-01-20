@@ -109,6 +109,11 @@ body {
 
 .end-of-game {
   visibility: hidden;
+
+  font-family: 'gyparodyheavy';
+  text-align: center;
+  background: blue;
+  color: white;
 }
 
 .final-jeopardy {
