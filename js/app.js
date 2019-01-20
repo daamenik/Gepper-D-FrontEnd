@@ -7,11 +7,11 @@ var text = "";
     categories = [];
     if (roundType === "J") {
         for (var i = 0; i < 6; i++) {
-            categories[i] = rounds[0].roundClues[i].Category;  
-        } 
+            categories[i] = rounds[0].roundClues[i].Category;
+        }
     } else if (roundType == "D") {
         for (var i = 0; i < 6; i++) {
-            categories[i] = rounds[1].roundClues[i].Category;  
+            categories[i] = rounds[1].roundClues[i].Category;
         }
     } else {
         categories[0] = rounds[2].roundClues[0].Category;
@@ -65,6 +65,7 @@ var text = "";
     };
     document.getElementById(dollarAmounts[rowNum]).innerHTML = gridRow;
 })("J");
+
 
 // dollarAmounts.forEach(element => {
 //     text = "";
