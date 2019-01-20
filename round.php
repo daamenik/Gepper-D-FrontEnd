@@ -34,13 +34,13 @@
 
     <div class="daily-double" id="dailyDouble">
         <h3>You've found a Daily Double!</h3>
-        <h4>Enter your wager: $<input type="text" id="ddEntry"></h4><br>
+        <h4>Enter your wager: $<input type="text" id="ddEntry"></><br>
         <button onclick="showDailyDouble()">See Question</button>
     </div>
 
     <div class="final-jeopardy" id="finalJeopardy">
         <div class="category col-md-6 offset-md-3" id="finalClue"></div>
-        Enter your wager: $<input type="text" id="wagerEntry"><br>
+        <h4>Enter your wager: $<input type="text" id="wagerEntry"></h4><br>
         <button onclick="showFinalQuestion()">See Question</button>
     </div>
 

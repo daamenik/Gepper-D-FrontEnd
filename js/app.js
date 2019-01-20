@@ -16,6 +16,7 @@ var score = document.getElementById("score");
 var showNumber = Number(document.getElementById("showNumberDiv").innerHTML);
 var wager = 0;
 
+
 function showFinalQuestion() {
     var id = roundClues[0].clue_id;
     wager = Number(document.getElementById("wagerEntry").value);
@@ -29,11 +30,13 @@ function showFinalQuestion() {
     }
 }
 
+//makes daily double visible
 function showDDEntry(id) {
     currentDailyDouble = id;
     document.getElementById("dailyDouble").style.visibility = "visible";
 }
 
+//displays the daily double handler, handle wager, triggers endgame
 function showDailyDouble() {
     wager = Number(document.getElementById("ddEntry").value);
     if (playerMoney > 1000) {
@@ -51,9 +54,10 @@ function showDailyDouble() {
             document.getElementById("dailyDouble").style.visibility = "hidden";
         }
     }
-    
+
 }
 
+//queries the database by showNumber and returns the json
 function getPHPRounds(showNumber) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
@@ -66,6 +70,7 @@ function getPHPRounds(showNumber) {
     xmlhttp.send();
 }
 
+//displays board
 function showBoard() {
     if (showNumber !== 0) {
         getPHPRounds(showNumber);
@@ -73,9 +78,10 @@ function showBoard() {
     }
 }
 
+//builds a board based on the round type/mode, can handle game events
 function initializeClueBoard(roundType) {
     roundCode = roundType;
-    
+
     if (roundType === "J") {
         getCategories(roundType, jeopardyAmounts);
         buildClues(jeopardyAmounts);
@@ -88,8 +94,8 @@ function initializeClueBoard(roundType) {
     }
 }
 
+//gets categories for a certain round, prepares them based on round type and dollar amounts
 function getCategories(roundType, dollarAmounts) {
-    debugger;
     categories = [];
     var fullCategoryValue;
     if (roundType === "J") {
@@ -100,11 +106,13 @@ function getCategories(roundType, dollarAmounts) {
         roundClues = _.where(phpRounds, {round: "Final Jeopardy!"});
     }
 
+    //final jeopardy handler for a single question
     if (roundCode === "F") {
-        debugger;
         document.getElementById("normalBoard").innerHTML = "";
         document.getElementById("finalClue").innerHTML = roundClues[0].category;
         numClues = 1;
+
+    //otherwise build board with questions normally
     } else {
         numClues = roundClues.length;
 
@@ -128,6 +136,7 @@ function getCategories(roundType, dollarAmounts) {
     }
 }
 
+//builds html for rows of clues based on dollarAmounts of current gametype
 function buildClues(dollarAmounts) {
     dailyDoubleIDs = [];
     var category;
@@ -168,16 +177,8 @@ function buildClues(dollarAmounts) {
 
 }
 
-
+//handles the question answering and music after a clue is clicked
 function showQuestion(id) {
-    // var isDailyDouble = false;
-    // if (_.contains(dailyDoubleIDs, id)) {
-    //     var enterWager = prompt("You've found a Daily Double! Enter your wager:");
-    //     wager = Number(enterWager);
-    //     isDailyDouble = true;
-    // }
-
-    //alert("Hey " + id);
     themeMusic.play();
 
     var question = "";
