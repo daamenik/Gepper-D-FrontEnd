@@ -146,14 +146,32 @@ function showQuestion(id) {
       qModal.style.display = "none";
       answerShown = false;
 
+      //disable this clue
       score.innerHTML = "$" + playerMoney;
+      var currentClue = document.getElementById(id);
+      currentClue.innerHTML = "";
+      currentClue.onclick = function(){};
+
+      //reset the music
+      themeMusic.pause();
+      themeMusic.currentTime = 0.0;
     }
 
     noCorrectBtn.onclick = function(){
+      playerMoney -= questionMoney;
       correctnessDiv.style.visibility = "hidden";
       qModal.style.display = "none";
       answerShown = false;
       score.innerHTML = "$" + playerMoney;
+
+      //disable this clue
+      var currentClue = document.getElementById(id);
+      currentClue.innerHTML = "";
+      currentClue.onclick = function(){};
+
+      //reset the music
+      themeMusic.pause();
+      themeMusic.currentTime = 0.0;
     }
 
 }
