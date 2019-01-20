@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="https://i.kym-cdn.com/photos/images/original/001/318/758/bbe.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="icon.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <title>Playing Game</title>
