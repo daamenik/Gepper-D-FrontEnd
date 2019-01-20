@@ -3,14 +3,77 @@ var categories = [];
 var dollarAmounts = ["$200", "$400", "$600", "$800", "$1000"];
 var text = "";
 
-dollarAmounts.forEach(element => {
-    text = "";
-    dollarRow(element);
-    document.getElementById(element).innerHTML = text;
-});
-
-function dollarRow(value) {
-    for (var i = 0; i < 6; i++) {
-        text += "<div class=\"col clue-box\">" + value + "</div>";
+(function getCategories(roundType) {
+    categories = [];
+    if (roundType === "J") {
+        for (var i = 0; i < 6; i++) {
+            categories[i] = rounds[0].roundClues[i].Category;  
+        } 
+    } else if (roundType == "D") {
+        for (var i = 0; i < 6; i++) {
+            categories[i] = rounds[1].roundClues[i].Category;  
+        }
+    } else {
+        categories[0] = rounds[2].roundClues[0].Category;
     }
-}
+    var categoryRowCode = "";
+    for (var i = 0; i < categories.length; i++) {
+        categoryRowCode += "<div class=\"col category\">" + categories[i] + "</div>";
+    }
+    document.getElementById("categories").innerHTML = categoryRowCode;
+})("J");
+
+(function buildClues(roundType) {
+    var roundClues = [];
+    if (roundType === "J") {
+        roundClues = rounds[0].roundClues;
+    } else if (roundType === "D") {
+        roundClues = rounds[1].roundClues;
+    } else {
+        roundClues = rounds[2].roundClues;
+    }
+     var category;
+     var dollarValue;
+     var question;
+     var answer;
+     var id;
+     var categoryNumber = 0;
+     var rowNum = 0;
+     var gridRow = "";
+    debugger;
+    for (var i = 0; i < roundClues.length; i++) {
+        if (categoryNumber === 6) {
+            categoryNumber = 0;
+            document.getElementById(dollarAmounts[rowNum]).innerHTML = gridRow;
+            gridRow = "";
+            rowNum++;
+        }
+
+        var clue = roundClues[i];
+        category = clue.Category;
+        dollarValue = clue.Value;
+        id = clue.ClueID;
+
+        if (categories[categoryNumber] === category) {
+            gridRow += "<div class=\"col clue-box\" id=\"" + id + "\">" + dollarValue + "</div>";
+        } else {
+            gridRow += "<div class=\"col clue-box\">Nope</div>";
+            i--;
+        }
+
+        categoryNumber++;
+    };
+    document.getElementById(dollarAmounts[rowNum]).innerHTML = gridRow;
+})("J");
+
+// dollarAmounts.forEach(element => {
+//     text = "";
+//     dollarRow(element);
+//     document.getElementById(element).innerHTML = text;
+// });
+
+// function dollarRow(value) {
+//     for (var i = 0; i < 6; i++) {
+//         text += "<div class=\"col clue-box\">" + value + "</div>";
+//     }
+// }

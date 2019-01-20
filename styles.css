@@ -8,8 +8,9 @@ body {
     border-color: black;
     color: white;
     font-style: bold;
-    padding: 5px 0px;
+    padding: 5px 5px;
     text-align: center;
+    vertical-align: center; 
 }
 
 .clue-box {
