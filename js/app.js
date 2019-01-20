@@ -150,6 +150,7 @@ function showQuestion(id) {
     var correctnessDiv = document.getElementById('correctness');
     var yesCorrectBtn = document.getElementById('yesCorrect');
     var noCorrectBtn = document.getElementById('noCorrect');
+    var passBtn = document.getElementById('pass');
 
     //if we click show answer once, it shows, twice, disappears
     show.onclick = function(event) {
@@ -196,6 +197,21 @@ function showQuestion(id) {
       qModal.style.display = "none";
       answerShown = false;
       score.innerHTML = "$" + playerMoney;
+
+      //disable this clue
+      var currentClue = document.getElementById(id);
+      currentClue.innerHTML = "";
+      currentClue.onclick = function(){};
+
+      //reset the music
+      themeMusic.pause();
+      themeMusic.currentTime = 0.0;
+    }
+
+    passBtn.onclick = function(){
+      correctnessDiv.style.visibility = "hidden";
+      qModal.style.display = "none";
+      answerShown = false;
 
       //disable this clue
       var currentClue = document.getElementById(id);
