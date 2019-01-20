@@ -27,7 +27,6 @@ function showFinalQuestion() {
         showQuestion(id);
         document.getElementById("finalJeopardy").style.visibility = "hidden";
         document.getElementById("endGame").style.visibility = "visible";
-        document.getElementById("finalScore").innerHTML = "$" + playerMoney;
     }
 }
 

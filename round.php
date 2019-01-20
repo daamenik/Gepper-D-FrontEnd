@@ -47,8 +47,7 @@
     <div class="end-of-game" id="endGame">
       <center>
         <h3>
-            <p>Game over! Your final score was</p>
-            <p id="finalScore"></p>
+            <p>Game over!</p>
             <a href="index.html">Play again?</a>
         </h3>
       </center>
