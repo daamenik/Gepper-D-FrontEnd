@@ -137,8 +137,8 @@ function showQuestion(id) {
     //format question and answer strings
     var qString = "";
     var aString = "";
-    qString = "<p>" + question + "</p>";
-    aString = "<p>Answer: " + answer + "</p>";
+    qString = "<h2>" + question + "</h2>";
+    aString = "<h1>Answer: " + answer + "</h1>";
 
     //access and show modal
     var qModal = document.getElementById('qModal');
