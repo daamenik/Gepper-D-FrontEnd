@@ -118,3 +118,17 @@ button {
   background-color: blue;
   color: white;
 }
+
+.title-header {
+  font-family: 'gyparodyheavy';
+  padding: 40px;
+  text-align: center;
+  background: blue;
+  color: white;
+  font-size: 30px;
+}
+
+input{
+  background-color: blue;
+  color: white;
+}
