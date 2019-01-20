@@ -51,6 +51,7 @@
         <p>Did you get the question correct?</p>
         <button id = "yesCorrect" type="button" class="btn btn-default">Yes</button>
         <button id = "noCorrect" type="button" class="btn btn-default">No</button>
+        <button id = "pass" type="button" class="btn btn-default">Pass</button>
       </div>
     </div>
 </div>
