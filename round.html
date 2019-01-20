@@ -1,5 +1,59 @@
 <!DOCTYPE html>
 <html>
+
+<style>
+    @font-face {
+      font-family: 'gyparodyheavy';
+      src: url('gyparody.eot');
+      src: url('gyparody.eot?#iefix') format('embedded-opentype'),
+           url('gyparody.ttf') format('truetype'),
+           url('gyparody.svg#gyparodyheavy') format('svg');
+      font-weight: normal;
+      font-style: normal;
+
+    }
+
+
+    @font-face {
+      font-family: 'arroyoregular';
+      src: url('arroy.eot');
+      src: url('arroy.eot?#iefix') format('embedded-opentype'),
+           url('arroy.ttf') format('truetype'),
+           url('arroy.svg#arroyoregular') format('svg');
+      font-weight: normal;
+      font-style: normal;
+
+    }
+
+
+    @font-face {
+      font-family: 'optikorinna-agencyregular';
+      src: url('optikorinna.eot');
+      src: url('optikorinna.eot?#iefix') format('embedded-opentype'),
+           url('optikorinna.ttf') format('truetype'),
+           url('optikorinna.svg#optikorinna-agencyregular') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    title {
+     font-family: 'gyparodyheavy';
+    }
+
+		p {
+     font-family: 'optikorinna-agencyregular';
+    }
+
+		div {
+			font-family: 'optikorinna-agencyregular';
+		}
+
+		button {
+			font-family: 'gyparodyheavy';
+		}
+
+</style>
+
 <head>
     <meta charset="UTF-8">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
@@ -38,6 +92,7 @@
         <p>Did you get the question correct?</p>
         <button id = "yesCorrect" type="button" class="btn btn-default">Yes</button>
         <button id = "noCorrect" type="button" class="btn btn-default">No</button>
+        <button id = "pass" type="button" class="btn btn-default">Pass</button>
       </div>
     </div>
 </div>

@@ -1,3 +1,41 @@
+@font-face {
+  font-family: 'gyparodyheavy';
+  src: url('fonts/gyparody.eot');
+  src: url('fonts/gyparody.eot?#iefix') format('embedded-opentype'),
+       url('fonts/gyparody.ttf') format('truetype'),
+       url('fonts/gyparody.svg#gyparodyheavy') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+@font-face {
+  font-family: 'arroyoregular';
+  src: url('fonts/arroy.eot');
+  src: url('fonts/arroy.eot?#iefix') format('embedded-opentype'),
+       url('fonts/arroy.ttf') format('truetype'),
+       url('fonts/arroy.svg#arroyoregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+@font-face {
+  font-family: 'optikorinna-agencyregular';
+  src: url('fonts/optikorinna.eot');
+  src: url('fonts/optikorinna.eot?#iefix') format('embedded-opentype'),
+       url('fonts/optikorinna.ttf') format('truetype'),
+       url('fonts/optikorinna.svg#optikorinna-agencyregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+    font-family: 'optikorinna-agencyregular';
+}
+
 body {
     background-color: black;
     color: white;
@@ -28,7 +66,7 @@ body {
     padding-top: 25px;
 }
 
-/* The Modal (background) */
+/* w3schools modal example */
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
