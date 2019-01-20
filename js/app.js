@@ -4,7 +4,10 @@ var phpRounds = [];
 var roundClues = [];
 var roundCode = "J";
 var numClues = 0;
-var dollarAmounts = ["$200", "$400", "$600", "$800", "$1000"];
+var jeopardyAmounts = ["$200", "$400", "$600", "$800", "$1000"];
+var doubleJeopardyAmounts = ["$400", "$800", "$1200", "$1600", "$2000"];
+var dailyDoubleIDs = [];
+var currentDailyDouble = 0;
 var text = "";
 var themeMusic = document.getElementById("music");
 var playerMoney = 0;
@@ -21,6 +24,31 @@ function showFinalQuestion() {
     } else {
         showQuestion(id);
     }
+}
+
+function showDDEntry(id) {
+    currentDailyDouble = id;
+    document.getElementById("dailyDouble").style.visibility = "visible";
+}
+
+function showDailyDouble() {
+    wager = Number(document.getElementById("ddEntry").value);
+    if (playerMoney > 1000) {
+        if (wager > playerMoney) {
+            alert("Your wager cannot be higher than your score.");
+        } else {
+            showQuestion(currentDailyDouble);
+            document.getElementById("dailyDouble").style.visibility = "hidden";
+        }
+    } else {
+        if (wager > 1000) {
+            alert("You can only wager up to $1000 when your score is this low.");
+        } else {
+            showQuestion(currentDailyDouble);
+            document.getElementById("dailyDouble").style.visibility = "hidden";
+        }
+    }
+    
 }
 
 function getPHPRounds(showNumber) {
@@ -44,15 +72,19 @@ function showBoard() {
 
 function initializeClueBoard(roundType) {
     roundCode = roundType;
-    getCategories(roundType);
-    if (roundType !== "F") {
-        buildClues();
+    
+    if (roundType === "J") {
+        getCategories(roundType, jeopardyAmounts);
+        buildClues(jeopardyAmounts);
+    } else if (roundType === "D") {
+        getCategories(roundType, doubleJeopardyAmounts);
+        buildClues(doubleJeopardyAmounts);
     } else {
         document.getElementById("finalJeopardy").style.visibility = "visible";
     }
 }
 
-function getCategories(roundType) {
+function getCategories(roundType, dollarAmounts) {
     debugger;
     categories = [];
     var fullCategoryValue;
@@ -92,7 +124,8 @@ function getCategories(roundType) {
     }
 }
 
-function buildClues() {
+function buildClues(dollarAmounts) {
+    dailyDoubleIDs = [];
     var category;
     var dollarValue;
     var id;
@@ -103,7 +136,7 @@ function buildClues() {
     for (var i = 0; i < roundClues.length; i++) {
         if (categoryNumber === 6) {
             categoryNumber = 0;
-            document.getElementById(dollarAmounts[rowNum]).innerHTML = gridRow;
+            document.getElementById(jeopardyAmounts[rowNum]).innerHTML = gridRow;
             gridRow = "";
             rowNum++;
         }
@@ -114,20 +147,32 @@ function buildClues() {
         id = clue.clue_id;
 
         if (categories[categoryNumber] === category) {
-            gridRow += "<div class=\"col clue-box\" id=\"" + id + "\" onclick=\"return showQuestion(this.id)\">" + dollarValue + "</div>";
+            if (dollarValue !== dollarAmounts[rowNum]) {
+                dailyDoubleIDs.push(id);
+                gridRow += "<div class=\"col clue-box\" id=\"" + id + "\" onclick=\"return showDDEntry(this.id)\">" + dollarAmounts[rowNum] + "</div>";
+            } else {
+                gridRow += "<div class=\"col clue-box\" id=\"" + id + "\" onclick=\"return showQuestion(this.id)\">" + dollarAmounts[rowNum] + "</div>";
+            }
         } else {
-            gridRow += "<div class=\"col clue-box\">Nope</div>";
+            gridRow += "<div class=\"col clue-box\"> </div>";
             i--;
         }
 
         categoryNumber++;
     };
-    document.getElementById(dollarAmounts[rowNum]).innerHTML = gridRow;
+    document.getElementById(jeopardyAmounts[rowNum]).innerHTML = gridRow;
 
 }
 
 
 function showQuestion(id) {
+    // var isDailyDouble = false;
+    // if (_.contains(dailyDoubleIDs, id)) {
+    //     var enterWager = prompt("You've found a Daily Double! Enter your wager:");
+    //     wager = Number(enterWager);
+    //     isDailyDouble = true;
+    // }
+
     //alert("Hey " + id);
     themeMusic.play();
 
@@ -140,7 +185,7 @@ function showQuestion(id) {
       if(roundClues[i].clue_id == id ){
         question = roundClues[i].question;
         answer = roundClues[i].answer;
-        questionMoney = roundCode === "F" ? wager : parseInt(roundClues[i].value.substring(1,));
+        questionMoney = (roundCode === "F" || _.contains(dailyDoubleIDs, id)) ? wager : parseInt(roundClues[i].value.substring(1,));
         // console.log(question);
       }
     }
