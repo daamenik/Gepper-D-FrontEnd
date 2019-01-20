@@ -45,6 +45,7 @@ function showDailyDouble() {
         } else {
             showQuestion(currentDailyDouble);
             document.getElementById("dailyDouble").style.visibility = "hidden";
+            wager = 0;
         }
     } else {
         if (wager > 1000) {
@@ -52,6 +53,7 @@ function showDailyDouble() {
         } else {
             showQuestion(currentDailyDouble);
             document.getElementById("dailyDouble").style.visibility = "hidden";
+            wager = 0;
         }
     }
 
