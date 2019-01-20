@@ -51,6 +51,7 @@ body {
     padding: 5px 5px;
     text-align: center;
     vertical-align: center;
+    text-shadow: 2px 2px 5px black;
 }
 
 .clue-box {
@@ -105,6 +106,7 @@ body {
 
 .score-header {
   font-family: 'arroyoregular';
+  text-shadow: 2px 2px 5px black;
   color: #fefefe;
 }
 
@@ -138,7 +140,8 @@ button {
 
 .title-header {
   font-family: 'gyparodyheavy';
-  padding: 40px;
+  text-shadow: 2px 2px 5px black;
+  padding: 20px;
   text-align: center;
   background: blue;
   color: white;
