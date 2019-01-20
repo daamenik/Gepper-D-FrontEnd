@@ -33,7 +33,7 @@
     <div class="final-jeopardy" id="finalJeopardy">
         <div class="category col-md-6 offset-md-3" id="finalClue"></div>
         Enter your wager: $<input type="text" id="wagerEntry"><br>
-        <button>See Question</button>
+        <button onclick="showFinalQuestion()">See Question</button>
     </div>
 
     <div class="invisible-div" id="showNumberDiv">
